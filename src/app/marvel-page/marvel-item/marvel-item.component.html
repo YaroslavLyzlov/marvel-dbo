@@ -1,0 +1,5 @@
+<!--{{ currentPage.anchors | json }}-->
+<img (click)="highlightAnchors()" #htmlImageElement class="marvel-item__image" [src]="currentPage.url"/>
+<div class="marvel-item__anchor" [class.marvel-item__anchor--show]="isHighlightAnchors" (click)="transitionToPage($event, anchor)" *ngFor="let anchor of currentPage.anchors" [ngStyle]="{ top: anchor.top + 'px', left: anchor.left + 'px', width: anchor.width + 'px', height: anchor.height + 'px' }">
+</div>
+<app-marvel-item-loader *ngIf="isLoading"></app-marvel-item-loader>
