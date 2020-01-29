@@ -1,0 +1,8 @@
+{
+  "/users": {
+    "target": "https://stable.paycontrol.org/v5.0/pc-api/ef0653fa-50d4-430a-90cb-0edab6321b70/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

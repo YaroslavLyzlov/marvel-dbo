@@ -1,0 +1,15 @@
+<div class="dashboard">
+  <div class="dashboard-item" #element [id]="page.name" [ngClass]="{'dashboard-item--marked': page.marked, 'dashboard-item--selected': page.selected}" *ngFor="let page of pages; let i = index" (click)="onClick(page, element)">
+    <img class="dashboard-item__img" [src]="page.url" alt="page.name">
+
+
+    <div *ngFor="let arrow of page.arrows" class="dashboard-item__line" [style.left.px]="arrow.left"  [ngStyle]="{ 'transform': 'rotate(' + arrow.angle + 'deg)' }" [style.top.px]="arrow.top" [style.height.px]="arrow.height">
+      <div class="arrow-top"></div>
+    </div>
+<!--    <div class="dashboard-item__line" [style.left.px]="A.x"  [ngStyle]="{ 'transform': 'rotate(' + getAngle() + 'deg)' }" [style.top.px]="A.y" [style.height.px]="getD()"  *ngIf="i === 1">-->
+<!--      {{ getD() }}-->
+<!--      {{ getAngle() }}-->
+<!--    </div>-->
+
+  </div>
+</div>

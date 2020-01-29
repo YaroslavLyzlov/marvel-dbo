@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MarvelItemComponent } from './marvel-item/marvel-item.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  { path: ':id',
-    component: MarvelItemComponent
+    component: DashboardComponent
   }
 ];
 
@@ -16,4 +12,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MarvelPageRoutingModule { }
+export class MarvelDashboardRoutingModule { }

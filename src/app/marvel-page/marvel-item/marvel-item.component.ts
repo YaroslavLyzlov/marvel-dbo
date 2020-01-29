@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
 export class MarvelItemComponent implements AfterViewInit {
   @ViewChild('htmlImageElement', { static: true }) htmlImageElement: ElementRef<HTMLImageElement>;
   isLoading = false;
-  currentPage = {
+  currentPage: any = {
     url: '',
     anchors: [],
     width: 0,
@@ -20,6 +20,7 @@ export class MarvelItemComponent implements AfterViewInit {
   isReady = false;
   onReadeHtmlImage: Subject<void> = new Subject<void>();
   isHighlightAnchors = false;
+  sub;
   constructor(private marvelStateService: MarvelStateService, private route: ActivatedRoute, private router: Router) {
     route.params.subscribe(({id}) => {
       this.onChangeRoute(id);
@@ -45,6 +46,7 @@ export class MarvelItemComponent implements AfterViewInit {
 
   onChangeRoute(id: string) {
     if (this.isReady) {
+      // tslint-disable
       this.currentPage = this.marvelStateService.getPage(id);
       return;
     }
@@ -68,11 +70,17 @@ export class MarvelItemComponent implements AfterViewInit {
     event.stopPropagation();
     if (anchor.action) {
       this.isLoading = true;
-      anchor.action().subscribe(
+      this.sub = anchor.action().subscribe(
         result => {
+          if (result.answer.transaction_info.status === 'confirmed') {
+            this.isLoading = false;
+            this.router.navigateByUrl(anchor.route);
+            if (this.sub) {
+              this.sub.unsubscribe();
+            }
+          }
           console.log('result', result, anchor);
-          this.isLoading = false;
-          this.router.navigateByUrl(anchor.route);
+
         }
       );
     } else {

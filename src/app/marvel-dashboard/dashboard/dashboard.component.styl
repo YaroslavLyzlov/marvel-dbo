@@ -1,0 +1,41 @@
+:host
+  display flex
+  justify-content center
+
+.dashboard
+  display flex
+  justify-content space-around
+  flex-wrap wrap
+  margin-top 20px
+  position relative
+  &-item
+    cursor pointer
+    margin-bottom 20px
+    max-width 30%
+    transition: all .2s cubic-bezier(.645,.045,.355,1);
+    &:hover
+      opacity 0.7
+    &--selected
+      box-shadow 0 0 18px 10px red
+    &--marked
+      box-shadow 0 0 18px 10px #007ec1
+    &__img
+      width 100%
+      height 100%
+    &__line
+      width 3px
+      background-color red
+      position absolute
+      z-index 2
+      transform-origin 100% 0
+
+.arrow-top {
+  border: 11px solid transparent;
+  border-top-color: orangered;
+  border-bottom: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -10px;
+  bottom: -4px;
+}
